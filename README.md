@@ -1,10 +1,10 @@
-# UF Bias-athon Workshop 2025
+# UF Bias-athon Workshop 2025 (Have to Update)
 
 Welcome to the **UF Bias-athon Workshop 2025**! This repository contains Jupyter notebooks designed to explore **bias in machine learning**, **model drift**, **bias mitigation techniques**, and **model fairness evaluation**. All notebooks are hosted on GitHub and can be run directly in **Google Colab**.
 
 ## 📌 How to Use This Workshop
 1. Click on any **notebook link** below to open it in **Google Colab** (links will open in a new tab).
-2. Run the first cell to **install dependencies** and load the dataset.
+2. Run the first cell to **install dependencies** and load the dataset in designated notebook.
 3. Follow the guided exercises and code implementations.
 
 ## 🚀 Notebooks
