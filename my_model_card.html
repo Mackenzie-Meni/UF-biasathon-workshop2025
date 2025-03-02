@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  h1 {text-align: center;}
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .col {
+    flex: 1;
+    min-width: 300px;
+  }
+  .card {
+    padding: 1em;
+    border: 1px solid #DADCE0;
+    margin: 10px;
+    overflow: hidden;
+  }
+  .img-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+  }
+  .img-item {
+    flex: 1;
+    margin: 10px;
+    max-width: 22%;
+    min-width: 200px;
+    /* Add extra padding on the left for y-axis labels */
+    padding-left: 15px;
+  }
+  .auroc-item {
+    flex: 1;
+    margin: 10px;
+    max-width: 23%;
+    min-width: 220px;
+    padding-left: 15px;
+  }
+  .fairness-item {
+    flex: 1;
+    margin: 10px;
+    max-width: 31%;
+    min-width: 300px;
+    padding-left: 15px;
+  }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  table {
+    margin-bottom: 10px;
+  }
+  table th {
+    background: #eee;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    height: 30px;
+    text-align: left;
+    padding: 5px 10px
+  }
+  caption { font-weight: bold; }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Shrink the actual image size to fit better */
+    max-height: 300px;
+    width: auto;
+    margin: 0 auto;
+  }
+  .section-title {
+    text-align: center;
+    margin: 15px 0;
+    color: #333;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+  }
+  /* Make everything printable and fit to page */
+  @media print {
+    img {
+      max-height: 200px;
+    }
+    .img-item, .auroc-item, .fairness-item {
+      page-break-inside: avoid;
+    }
+  }
+</style>
+<title>
+  Model Card for Random Forest
+</title>
+<script>
+  // This script scales content to fit window on load
+  window.onload = function() {
+    // Scale image containers if needed
+    const containers = document.querySelectorAll('.img-container');
+    containers.forEach(container => {
+      if (container.scrollWidth > window.innerWidth) {
+        const scale = window.innerWidth / container.scrollWidth * 0.9;
+        container.style.transform = `scale(${scale})`;
+        container.style.transformOrigin = 'left top';
+      }
+    });
+  };
+</script>
+</head>
+<body>
+  <h1>
+    Model Card for Random Forest
+  </h1>
+  <div class="row">
+    <div class="col card">
+      <h2>Model Details</h2>
+        <h3>Overview</h3>
+            Classification model for hospital mortality prediction
+        <h3>Version</h3>
+            <div>name: 1.0.0</div>
+            <div>date: 2025-01-01</div>
+            <div>diff: Initial release</div>
+        <h3>Documentation</h3>
+            A random forest model trained on the original dataset to predict hospital mortality.
+        <h3>Owners</h3>
+          UF Biasathon Workshop 2025, jeremy.balch@surgery.ufl.edu /n Mackenzie.Meni@medicine.ufl.edu
+    </div>
+    
+    <div class="col card">
+      <h2>Model Parameters</h2>
+        <h3>Model Architecture</h3>
+          <div style="white-space:pre-wrap;">Random Forest Classifier</div>
+        <h3>Input Format</h3>
+          <div style="white-space:pre-wrap;">Patient demographics, medical history, and vital signs (Categorical, Continuous)</div>
+        <h3>Output Format</h3>
+          <div style="white-space:pre-wrap;">Binary classification predicting hospital_death</div>
+    </div>
+    
+    <div class="col card">
+      <h2>Considerations</h2>
+        <h3>Intended Users</h3>
+          <ul>
+            <li>Healthcare professionals and researchers</li>
+          </ul>
+        
+        <h3>Use Cases</h3>
+          <ul>
+            <li>To predict hospital mortality</li>
+            <li>To improve patient outcomes and resource allocation</li>
+          </ul>
+        
+        <h3>Limitations</h3>
+          <ul>
+            <li>The model should be used in conjunction with clinical judgment and other diagnostic tools</li>
+          </ul>
+        
+        <h3>Tradeoffs</h3>
+          <ul>
+            <li>Balance between model accuracy and interpretability</li>
+          </ul>
+        
+        <h3>Ethical Considerations</h3>
+          <ul>
+            <li>
+              <div>Risk: Potential for discrimination</div>
+              <div>Mitigation Strategy: The model should not be used to discriminate against any patient group</div>
+            </li>
+            <li>
+              <div>Risk: Fairness and accuracy maintenance</div>
+              <div>Mitigation Strategy: The model should be regularly audited and updated to ensure fairness and accuracy</div>
+            </li>
+          </ul>
+    </div>
+  </div>
+  
+  <div class="col card">
+    <h2>Datasets</h2>
+    <div class="row">
+      <div class="col card">
+        <h3>Hospital Patient Dataset</h3>
+          <p>Dataset containing patient demographics, medical history, and vital signs</p>
+          <p><strong>Sensitive Data:</strong> Gender, Ethnicity, Age, Medical History</p>
+          
+          <!-- Training Distribution Section -->
+          <h4 class="section-title">Training Data Distributions</h4>
+          <div class="img-container">
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_gender_distribution.png" alt="Training Gender Distribution">
+              <p>Training Gender Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_ethnicity_distribution.png" alt="Training Ethnicity Distribution">
+              <p>Training Ethnicity Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_age_category_distribution.png" alt="Training Age Category Distribution">
+              <p>Training Age Category Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_bmi_category_distribution.png" alt="Training BMI Category Distribution">
+              <p>Training BMI Category Distribution</p>
+            </div>
+          </div>
+          
+          <!-- Testing Distribution Section -->
+          <h4 class="section-title">Testing Data Distributions</h4>
+          <div class="img-container">
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_gender_distribution.png" alt="Testing Gender Distribution">
+              <p>Testing Gender Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_ethnicity_distribution.png" alt="Testing Ethnicity Distribution">
+              <p>Testing Ethnicity Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_age_category_distribution.png" alt="Testing Age Category Distribution">
+              <p>Testing Age Category Distribution</p>
+            </div>
+            
+            <div class="img-item">
+              <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_bmi_category_distribution.png" alt="Testing BMI Category Distribution">
+              <p>Testing BMI Category Distribution</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col card">
+    <h2>Quantitative Analysis</h2>
+    
+    <!-- AUROC metrics side by side -->
+    <h4 class="section-title">Performance Metrics by Demographic Groups</h4>
+    <div class="img-container">
+      <div class="auroc-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_gender.png" alt="AUROC by Gender">
+        <p>AUROC by Gender</p>
+      </div>
+      
+      <div class="auroc-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_ethnicity.png" alt="AUROC by Ethnicity">
+        <p>AUROC by Ethnicity</p>
+      </div>
+      
+      <div class="auroc-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_age.png" alt="AUROC by Age">
+        <p>AUROC by Age</p>
+      </div>
+      
+      <div class="auroc-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_bmi.png" alt="AUROC by BMI">
+        <p>AUROC by BMI</p>
+      </div>
+    </div>
+    
+    <!-- Fairness metrics side by side -->
+    <h4 class="section-title">Fairness Assessment</h4>
+    <div class="img-container">
+      <div class="fairness-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/Demographic_Parity_Diff.png" alt="Demographic Parity">
+        <p>Demographic Parity</p>
+      </div>
+      
+      <div class="fairness-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/Disparate_Impact.png" alt="Disparate Impact">
+        <p>Disparate Impact</p>
+      </div>
+      
+      <div class="fairness-item">
+        <img src="/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/Equalized_Odds_Diff.png" alt="Equalized Odds">
+        <p>Equalized Odds</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
