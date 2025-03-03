@@ -134,7 +134,10 @@
         <h3>Documentation</h3>
             A random forest model trained on the original dataset to predict hospital mortality.
         <h3>Owners</h3>
-          UF Biasathon Workshop 2025, jeremy.balch@surgery.ufl.edu /n Mackenzie.Meni@medicine.ufl.edu
+          UF Biasathon Workshop 2025, jeremy.balch@surgery.ufl.edu, mackenzie.meni@medicine.ufl.edu
+        <h3>Feedback Mechanism</h3>
+            To report issues or provide feedback on model performance, please contact: 
+            jeremy.balch@surgery.ufl.edu or Mackenzie.Meni@medicine.ufl.edu
     </div>
     
     <div class="col card">
@@ -144,7 +147,19 @@
         <h3>Input Format</h3>
           <div style="white-space:pre-wrap;">Patient demographics, medical history, and vital signs (Categorical, Continuous)</div>
         <h3>Output Format</h3>
-          <div style="white-space:pre-wrap;">Binary classification predicting hospital_death</div>
+          <div style="white-space:pre-wrap;">Binary classification for predicting hospital_death</div>
+        <h3>Training Details</h3>
+          <ul>
+            <li>Algorithm: Random Forest Classifier</li>
+            <li>Hyperparameters: n_estimators=100, random_state=42</li>
+            <li>Train-Test Split: 80% training, 20% testing</li>
+            <li>Training Data Size: 62,060 samples</li>
+            <li>Testing Data Size: 15,515 samples</li>
+</ul>
+        <h3>Model Interpretability</h3>
+          <p>Random Forest models provide feature importance values that can help explain which factors most 
+            influence hospital mortality predictions. Key predictors include apache_4a_hospital_death_prob, age, 
+            and certain comorbidities.</p>
     </div>
     
     <div class="col card">
@@ -157,12 +172,17 @@
         <h3>Use Cases</h3>
           <ul>
             <li>To predict hospital mortality</li>
-            <li>To improve patient outcomes and resource allocation</li>
+            <li>Explore concepts of fairness and bias in healthcare</li>
           </ul>
         
-        <h3>Limitations</h3>
+        <h3>Caveats and Limitations</h3>
           <ul>
             <li>The model should be used in conjunction with clinical judgment and other diagnostic tools</li>
+            <li>The model is not a substitute for clinical judgment and other diagnostic tools</li>
+            <li>The dataset exhibits significant class imbalance with only 8.4% positive cases (hospital deaths). 
+                This affected model training and evaluation strategies.</li>
+            <li>This model should be integrated into clinical workflows only after thorough validation 
+                by healthcare professionals.</li>
           </ul>
         
         <h3>Tradeoffs</h3>
@@ -190,7 +210,7 @@
       <div class="col card">
         <h3>Hospital Patient Dataset</h3>
           <p>Dataset containing patient demographics, medical history, and vital signs</p>
-          <p><strong>Sensitive Data:</strong> Gender, Ethnicity, Age, Medical History</p>
+          <p><strong>Sensitive Data:</strong> Gender, Ethnicity, Age</p>
           
           <!-- Training Distribution Section -->
           <h4 class="section-title">Training Data Distributions</h4>
@@ -242,7 +262,6 @@
       </div>
     </div>
   </div>
-  
   <div class="col card">
     <h2>Quantitative Analysis</h2>
     

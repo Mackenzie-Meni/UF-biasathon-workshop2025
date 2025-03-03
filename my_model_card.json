@@ -1,0 +1,125 @@
+{
+    "schema_version": "0.0.2",
+    "model_details": {
+      "name": "Random Forest",
+      "overview": "Classification model for hospital mortality prediction",
+      "documentation": "A random forest model trained on the original dataset to predict hospital mortality.",
+      "owners": [
+        {
+          "name": "UF Biasathon Workshop 2025",
+          "contact": "jeremy.balch@surgery.ufl.edu /n Mackenzie.Meni@medicine.ufl.edu"
+        }
+      ],
+      "version": {
+        "name": "1.0.0",
+        "date": "2025-01-01",
+        "diff": "Initial release"
+      }
+    },
+    "model_parameters": {
+      "model_architecture": "Random Forest Classifier",
+      "data": [
+        {
+          "name": "Hospital Patient Dataset",
+          "description": "Dataset containing patient demographics, medical history, and vital signs",
+          "sensitive": {
+            "sensitive_data": ["Gender", "Ethnicity", "Age", "Medical History"]
+          }
+        }
+      ],
+      "input_format": "Patient demographics, medical history, and vital signs (Categorical, Continuous)",
+      "output_format": "Binary classification predicting hospital_death"
+    },
+    "quantitative_analysis": {
+      "performance_metrics": [
+        {
+          "type": "AUROC by Age",
+          "value": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_age.png"
+        },
+        {
+          "type": "AUROC by BMI",
+          "value": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_bmi.png"
+        },
+        {
+          "type": "AUROC by Ethnicity",
+          "value": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_ethnicity.png"
+        },
+        {
+          "type": "AUROC by Gender",
+          "value": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/auroc_by_gender.png"
+        }
+      ],
+      "graphics": {
+        "description": "Demographic distribution visualizations",
+        "collection": [
+          {
+            "name": "Training Gender Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_gender_distribution.png"
+          },
+          {
+            "name": "Training Ethnicity Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_ethnicity_distribution.png"
+          },
+          {
+            "name": "Training Age Category Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_age_category_distribution.png"
+          },
+          {
+            "name": "Training BMI Category Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/train_bmi_category_distribution.png"
+          },
+          {
+            "name": "Testing Gender Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_gender_distribution.png"
+          },
+          {
+            "name": "Testing Ethnicity Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_ethnicity_distribution.png"
+          },
+          {
+            "name": "Testing Age Category Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_age_category_distribution.png"
+          },
+          {
+            "name": "Testing BMI Category Distribution",
+            "image": "/Users/jeremy/UFL Dropbox/Jeremy Balch/GitHub/UF-biasathon-workshop2025/figures/test_bmi_category_distribution.png"
+          }
+        ]
+      }
+    },
+    "considerations": {
+      "users": [
+        {
+          "description": "Healthcare professionals and researchers"
+        }
+      ],
+      "use_cases": [
+        {
+          "description": "To predict hospital mortality"
+        },
+        {
+          "description": "To improve patient outcomes and resource allocation"
+        }
+      ],
+      "limitations": [
+        {
+          "description": "The model should be used in conjunction with clinical judgment and other diagnostic tools"
+        }
+      ],
+      "tradeoffs": [
+        {
+          "description": "Balance between model accuracy and interpretability"
+        }
+      ],
+      "ethical_considerations": [
+        {
+          "name": "Potential for discrimination",
+          "mitigation_strategy": "The model should not be used to discriminate against any patient group"
+        },
+        {
+          "name": "Fairness and accuracy maintenance",
+          "mitigation_strategy": "The model should be regularly audited and updated to ensure fairness and accuracy"
+        }
+      ]
+    }
+  }
